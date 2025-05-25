@@ -527,25 +527,6 @@ def create_map(data, coord_type, map_style):
                     dash_array="5, 5"
                 ).add_to(m)
     
-    # Tambahkan legend jika ada data client
-    if color_map:
-        legend_html = '''
-        <div style="position: fixed; 
-                    top: 10px; right: 10px; width: 200px; height: auto; 
-                    background-color: white; border:2px solid grey; z-index:9999; 
-                    font-size:14px; padding: 10px">
-        <h4>Legend</h4>
-        '''
-        
-        for client, color in list(color_map.items())[:10]:  # Batasi maksimal 10 legend
-            legend_html += f'<p><i class="fa fa-circle" style="color:{color}"></i> {client[:25]}{"..." if len(client) > 25 else ""}</p>'
-        
-        if len(color_map) > 10:
-            legend_html += f'<p><i>... dan {len(color_map) - 10} lainnya</i></p>'
-        
-        legend_html += '</div>'
-        m.get_root().html.add_child(folium.Element(legend_html))
-    
     return m
 
 # Main content area
